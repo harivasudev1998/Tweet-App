@@ -1,0 +1,206 @@
+//Optional Field :'avtar','Intro','status','loggedOutTime'
+use TWEET_APP_METADATA;
+=================================Users========================
+db.createCollection('users', {
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object',
+      required: ['firstName', 'lastName', 'email','loginID','password','contactNumber','gender'],
+      properties: {
+        firstName: {
+          bsonType: 'string',
+          description: 'must be a string and is required'
+        },
+        lastName: {
+          bsonType: 'string',
+          description: 'must be a string and is required'
+        },
+        email: {
+          bsonType: 'string',
+          description: 'must be an string and is required'
+        },
+        loginID: {
+          bsonType: 'string',
+          description: 'must be an string and is required'
+        },
+        password: {
+          bsonType: 'string',
+          description: 'must be an string and is required'
+        },
+        contactNumber: {
+          bsonType: 'string',
+          description: 'must be an string and is required'
+        },
+        gender: {
+          enum: [ "Male", "Female","Other" ],
+            description: "can only be one of the enum values"
+        },
+        status: {
+          enum: [ "Active", "InActive"],
+            description: "can only be one of the enum values"
+        },
+        intro: {
+           bsonType: 'string',
+          description: 'must be an string'
+        },
+        loggedOutTime: {
+           bsonType: 'date',
+          description: 'must be an DateTimeStamp'
+        }
+      }
+    }
+  }
+});
+
+db.users.insertMany([
+{
+	firstName:"saurabh",
+	lastName:"Aasawa",
+	email:"test@mongodb.com",
+	loginID:"ACE@D",
+	password:"pass@word1",
+	contactNumber:"1234567890",
+	gender:"Male",
+	status:"Active"
+	
+},
+{
+	firstName:"test2",
+	lastName:"test2",
+	email:"test1@mongodb.com",
+	loginID:"ACE@D2",
+	password:"pass@word1",
+	contactNumber:"1234567890",
+	gender:"Male",
+	status:"Active"
+}])
+=================================POSTS========================
+db.createCollection('userTweets', {
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object',
+      required: ['tweet','timeOfPost'],
+      properties: {
+        tweet: {
+          bsonType: 'string',
+          description: 'must be a string and is required'
+        },
+        timeOfPost: {
+           bsonType: 'date',
+          description: 'must be an DateTimeStamp'
+        }
+      }
+    }
+  }
+});
+
+======================================================DB QUERIES=============================================
+//add user 
+
+db.users.insertMany([
+{
+	firstName:"saurabh",
+	lastName:"Aasawa",
+	email:"test@mongodb.com",
+	loginID:"ACE@D",
+	password:"pass@word1",
+	contactNumber:"1234567890",
+	gender:"Male",
+	status:"Active"
+	
+},
+{
+	firstName:"test2",
+	lastName:"test2",
+	email:"test1@mongodb.com",
+	loginID:"ACE@D2",
+	password:"pass@word1",
+	contactNumber:"1234567890",
+	gender:"Male",
+	status:"Active"
+}])
+//post a tweet
+db.userTweets.insertOne({
+	tweet:"MY FIRST Tweet",
+	createdBy: "ACE@D",
+	timeOfPost:new Date(),
+	likes:12,
+	tags:['new','nosqlApp','iiht'],
+	replies:[{reply:"naice app dude!!",username: "ACE@D2",timeOfReply:new Date()}]
+})
+
+db.userTweets.insertOne({
+	tweet:"MY FIRST Tweet TOOO",
+	createdBy: "ACE@D2",
+	timeOfPost:new Date(),
+	likes:5,
+	tags:['new','nosqlApp','iiht'],
+	replies:[{reply:"Thanks For Registering!!",username: "ACE@D",timeOfReply:new Date()}]
+})
+
+//UpdateTweet
+db.userTweets.updateOne({createdBy: "ACE@D",tweet:"MY FIRST Tweet"},{$set:{tweet:"edited Tweet"}});
+
+//deleteTweet
+db.userTweets.deleteOne({createdBy: "ACE@D",tweet:"edited Tweet"})
+
+//Like tweet  Query
+db.userTweets.updateOne({createdBy: "ACE@D"},{$inc:{likes:1}});
+
+//reply Tweet Query
+db.userTweets.updateOne({createdBy: "ACE@D"},{$push:{replies:{reply:"Loved it!!",username: "ACE@D2",timeOfReply:new Date()}}});
+
+//all tweets of user
+db.userTweets.find({createdBy: "ACE@D"})
+
+//all tweets
+db.userTweets.find({})
+
+
+//all tweets of user
+db.users.find({},{_id:0,loginID:1,status:1,loggedOutTime:1})
+
+//updatePassword
+db.users.updateOne({loginID: "ACE@D"},{$set:{password:"pass@3"}});
+
+=============================================================================================================
+
+db.createCollection('userTweets', {
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object',
+      required: ['tweet','createdBy','timeOfPost'],
+      properties: {
+        tweet: {
+          bsonType: 'string',
+          description: 'must be a string and is required'
+        },
+        createdBy: {
+          bsonType: 'string',
+          description: 'must be an string and is required'
+        },
+        timeOfPost: {
+           bsonType: 'date',
+          description: 'must be an DateTimeStamp'
+        },
+        tags:{
+          bsonType: 'array',
+          description: 'array of tags'
+        },
+        replies:{
+        	bsonType: 'object',
+        	properties: { 
+        		username :{
+          				bsonType: 'string',
+          				description: 'must be an string and is required'
+        			},
+        		reply :{
+          				bsonType: 'string',
+          				description: 'must be an string and is required'
+        			}
+        	}
+        }
+      }
+    }
+  }
+});

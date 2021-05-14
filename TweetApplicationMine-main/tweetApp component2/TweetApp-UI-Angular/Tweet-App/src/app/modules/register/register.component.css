@@ -1,0 +1,246 @@
+.brand-wrapper {
+    padding-top: 7px;
+    padding-bottom: 8px;
+  }
+  .brand-wrapper .logo {
+    height: 100px;
+    margin-right: 50px;
+  }
+  
+  @media screen and (min-width: 0px) and (max-width: 767px) {
+    .brand-wrapper .logo {
+      height: 30px;
+      display: block;
+      margin: auto;
+    }
+  }
+  
+  input,
+  select,
+  button {
+    color: #5e5757;
+    font-size: 13px;
+  }
+  
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+  }
+  :focus {
+    outline: none;
+  }
+  input,
+  select,
+  input:focus {
+    color: #000 !important;
+    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+    box-shadow: 0 0 0px 1000px #fff inset;
+    outline: none;
+  }
+  .wrapper {
+    min-height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    border-style: solid;
+    border-width: 2mm;
+    border-color: #000;
+    padding-left: 6mm;
+    padding-right:6mm;
+    
+
+  }
+  
+  .inner {
+    padding: 20px;
+    background: #fff;
+    max-width: 850px;
+    margin: auto;
+    display: flex;
+  }
+  .inner form {
+    width: 80%;
+    margin: 0 auto;
+  }
+  .inner h3 {
+    text-transform: uppercase;
+    font-size: 25px;
+    color: rgb(29, 161, 242);
+    text-align: center;
+    margin-bottom: 28px;
+    font-weight: bold;
+  }
+  
+  .form-group {
+    display: flex;
+  }
+  .form-group input {
+    width: 100%;
+  }
+  .width-85 {
+    width: 85px;
+  }
+  
+  .form-wrapper {
+    position: relative;
+  }
+  .form-wrapper i {
+    position: absolute;
+    bottom: 9px;
+    right: 0;
+    font-size: 20px;
+    color: #fff;
+  }
+  
+  input:focus + .zmdi {
+    color: rgb(29, 161, 242) !important;
+  }
+  input:focus {
+    border-color: rgb(29, 161, 242) !important;
+  }
+  .zmdi{
+    color: rgba(0, 0, 0, 0.61) !important;
+  }
+  select:focus {
+    border-color: rgb(29, 161, 242) !important;
+  }
+  select:focus + .zmdi {
+    color: rgb(29, 161, 242) !important;
+  }
+  .form-control {
+    border: none;
+    border-bottom: 1px solid #e7e7e7;
+    border-radius: 0;
+    padding: 9px 5px;
+    min-height: 40px;
+    font-size: 18px;
+    background-color: #fff;
+    font-weight: normal;
+  }
+  .form-control option {
+    background-color: #fff;
+    color: #000;
+  }
+  select {
+    box-shadow: none !important;
+  }
+  .form-control::-webkit-input-placeholder {
+    font-size: 13px;
+    color: #5e5757;
+  }
+  .form-control:focus {
+    border: none;
+    border-bottom: 3px solid rgb(29, 161, 242);
+    outline: none !important;
+  }
+  select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    padding-left: 20px;
+  }
+  select option[value=""][disabled] {
+    display: none;
+  }
+  
+  button {
+    border: none;
+    width: 164px;
+    height: 51px;
+    margin: auto;
+    margin-top: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: rgb(29, 161, 242);
+    font-size: 15px;
+    color: #fff;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+  }
+  button i {
+    margin-left: 10px;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+  button:hover i,
+  button:focus i,
+  button:active i {
+    -webkit-animation-name: hvr-icon-wobble-horizontal;
+    animation-name: hvr-icon-wobble-horizontal;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+  }
+  
+  @media (max-width: 1199px) {
+    .wrapper {
+      background-position: right center;
+    }
+  }
+  @media (max-width: 991px) {
+    .inner form {
+      padding-top: 10px;
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
+  @media (max-width: 767px) {
+    .inner {
+      display: block;
+    }
+    .inner .image-holder {
+      width: 100%;
+    }
+    .inner form {
+      width: 100%;
+      padding: 40px 0 30px;
+    }
+  
+    button {
+      margin-top: 60px;
+    }
+  }
+  
+  .select-placeholder-text {
+    font-size: 13px;
+    color: #5e5757 !important;
+  }
+  
+  button:hover {
+    background-color: rgb(72, 152, 202);
+  }
+  
+  button:disabled {
+    background-color: rgba(0, 0, 0, 0.61);
+    color: #9a9090;
+  }
+  
+  .error-message {
+    color: #dc3545;
+    font-size: medium;
+  }
+  .nested-class {
+    width: 150%;
+  }
+  .invalid {
+    border-color: #dc3545 !important;
+  }
+  .invalid + .zmdi {
+    color: #dc3545 !important;
+  }
+  

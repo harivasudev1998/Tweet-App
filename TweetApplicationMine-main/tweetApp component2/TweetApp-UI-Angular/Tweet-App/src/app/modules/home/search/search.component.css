@@ -1,0 +1,129 @@
+.search-bar {
+  position: relative;
+  width: 35%;
+  left: 70%;
+}
+@media (max-width: 1240px) {
+  .search-bar{
+    display: none !important;
+  }
+}
+
+
+input {
+  margin-top: 15px;
+
+  margin-left: 50px;
+  height: 45px;
+  background: grey !important;
+  border: 1px solid rgb(72, 152, 202);
+  border-left: none;
+  border-bottom-right-radius: 30px;
+  border-top-right-radius: 30px;
+  padding: 0 !important;
+}
+input,
+input:focus {
+  color: #000;
+  border: 1px solid rgb(72, 152, 202);
+  background: #000;
+  border-left: none;
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  box-shadow: 0 0 0px 1000px white inset;
+  outline-offset: 0;
+}
+
+.imageSearch {
+  height: 45px !important;
+  margin-top: 15px !important;
+  background-color: #000 !important;
+  border: 1px solid rgb(72, 152, 202);
+  color: rgb(72, 152, 202);
+  border-right: none;
+  margin-top: 1px;
+  border-bottom-left-radius: 30px;
+  border-top-left-radius: 30px;
+}
+
+i {
+  font-size: 25px !important;
+  font-weight: normal !important;
+}
+
+img {
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+}
+
+.inline-display {
+  display: inline-block;
+  margin-left: 15px;
+}
+
+.postTime {
+  margin-left: 5px;
+  color: #6e6c6c;
+}
+
+.tweet-box {
+  border: 1px solid #5e5757;
+  background-color: #fff;
+  height: 150px !important;
+  margin-bottom: 15px;
+  border-bottom-right-radius: 30px;
+  border-top-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-top-left-radius: 30px;
+}
+
+.contain {
+  width: 70% !important;
+  height: 130px !important;
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 15px;
+  margin-left: 25px;
+  margin-bottom: 15px;
+}
+
+.margin-top-15 {
+  margin-top: 25px;
+  padding-top: 15px;
+  padding-top: 10px;
+}
+.avtar {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+}
+
+.width-90 {
+  width: 69% !important;
+}
+
+.greenDot{
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    background: green;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.redDot{
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    background: rgb(201, 50, 50);
+    border-radius: 50%;
+    margin-right: 5px;
+}
+.margin-left-65 {
+  margin-left: 70px;
+  padding-bottom: 5px !important;
+}

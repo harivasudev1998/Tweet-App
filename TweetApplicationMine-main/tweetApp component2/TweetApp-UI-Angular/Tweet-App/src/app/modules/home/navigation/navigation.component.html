@@ -1,0 +1,37 @@
+<nav class="main-nav">
+  <ul>
+    <li>
+      <a id="hide">
+        <i class="fa fa-twitter fa-2x"></i>
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/home">
+        <i class="fa fa-home fa-2x"></i>
+        <span class="nav-text"> Home </span>
+      </a>
+    </li>
+
+    <li class="has-subnav">
+      <a routerLink="profile">
+        <i class="fa fa-user fa-2x"></i>
+        <span class="nav-text"> Profile </span>
+      </a>
+    </li>
+
+    <li class="has-subnav">
+      <a routerLink="contact-us">
+        <i class="fa fa-envelope fa-2x"></i>
+        <span class="nav-text"> Contact Us </span>
+      </a>
+    </li>
+
+    <li class="has-subnav">
+      <a routerLink="login" (click)="logout()">
+        <i class="fa fa-sign-out fa-2x"></i>
+        <span class="nav-text"> Logout </span>
+      </a>
+    </li>
+  </ul>
+</nav>

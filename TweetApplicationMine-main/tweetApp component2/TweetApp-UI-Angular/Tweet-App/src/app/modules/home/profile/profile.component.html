@@ -1,0 +1,89 @@
+<div class="margin-left-180">
+  <div class="home">
+    {{ user.firstName | titlecase }} {{ user.lastName | titlecase }}
+    <div>
+      <small>{{ myTweets.length }} tweet(s)</small>
+    </div>
+  </div>
+  <div class="contain">
+    <div class="height"></div>
+
+    <div class="userInfo">
+      <div class="avtar">
+        <img
+          *ngIf="user.gender === 'Female'"
+          src="./../../../../assets/images/female-icon.webp"
+        />
+        <img
+          *ngIf="user.gender === 'Male'"
+          src="./../../../../assets/images/male-avatar.jpg"
+        />
+      </div>
+      <button
+        id="login"
+        class="btn btn-block tweet-btn"
+        (click)="on()"
+        data-toggle="modal"
+        data-target="#bioModal"
+      >
+        ADD BIO
+      </button>
+      <div>
+        <div class="name">
+          {{ user.firstName | titlecase }} {{ user.lastName | titlecase }}
+        </div>
+        <div class="username">@{{ user.loginID }}</div>
+        <div class="margin-left-65 mt-3">
+          {{ user.intro }}
+        </div>
+        <div class="postTime">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+          <small
+            >Joined on {{ user.registeredDate | date: "mediumDate" }}</small
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-tweet [tweetsArray]="myTweets"></app-tweet>
+</div>
+
+<div
+  class="modal fade tempo"
+  id="bioModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span class="blue" aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="contain margins">
+        <textarea
+          placeholder="Add your bio"
+          [(ngModel)]="addBIOMessage"
+          maxlength="144"
+        ></textarea>
+        <button
+          id="login"
+          class="btn btn-block tweet-btn margin-rt-25"
+          [disabled]="addBIOMessage === '' || addBIOMessage === null"
+          (click)="addBIO()"
+          data-dismiss="modal"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+.margin-left-180 {
+  width: 600px;
+  position: absolute;
+  left: 23%;
+  border: none;
+  border-top: none;
+  border-bottom: none;
+}
+
+#form_container {
+  padding: 15px 15px;
+  margin-top: 15px;
+  background: #fff;
+  color: #000;
+}
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.upload-btn-wrapper input[type="file"] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+input,
+input:focus,
+textarea,
+textarea:focus
+ {
+  color: #000;
+  box-shadow: 0 0 0px 1000px white inset;
+}
+
+input:focus,
+textarea:focus
+ {
+  border: 1px solid rgb(72, 152, 202);
+}
+textarea{
+  resize: none !important;
+}
+
+.tweet-btn {
+  background-color: rgb(29, 161, 242) !important;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  margin-bottom: 14px;
+  margin-top: 10px;
+  width: 105px;
+  height: 40px;
+  float: right;
+}

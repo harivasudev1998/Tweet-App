@@ -1,0 +1,32 @@
+<div class="margin-left-180">
+  <div class="home">
+    HOME
+    <div class="welcome"><small>Welcome,</small> {{ user.firstName | titlecase}}</div>
+  </div>
+  <div class="contain">
+    <div class="avtar">
+      <img
+        *ngIf="user.gender === 'Female'"
+        src="./../../../../assets/images/female-icon.webp"
+      />
+      <img
+        *ngIf="user.gender === 'Male'"
+        src="./../../../../assets/images/male-avatar.jpg"
+      />
+    </div>
+    <textarea
+      placeholder="Whats On Your Mind?"
+      maxlength="144"
+      [(ngModel)]="tweet"
+    ></textarea>
+    <button
+      id="login"
+      class="btn btn-block tweet-btn"
+      (click)="tweetPost()"
+      [disabled]="tweet === '' || tweet === null"
+    >
+      Tweet
+    </button>
+  </div>
+  <app-tweet [tweetsArray]="tweets"></app-tweet>
+</div>

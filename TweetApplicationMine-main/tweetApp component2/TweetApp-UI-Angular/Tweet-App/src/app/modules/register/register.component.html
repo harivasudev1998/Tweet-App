@@ -1,0 +1,159 @@
+<div class="wrapper inner">
+  <div class="brand-wrapper">
+      <img src="./../../../assets/images/Twitter-Logo.png" alt="Tweet-Logo" class="logo" />
+  </div>
+  <form [formGroup]="signup_form">
+      <h3>Create your account</h3>
+      <div class="alert alert-danger" role="alert" *ngIf="isValidRegistration">
+          The username/emaild already exist in data base
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="isValidRegistrationServer">
+          Something went wrong . Try previous action again or contact support team .
+      </div>
+      <div class="form-group">
+          <div class="nested-class">
+              <input type="text" placeholder="First Name" (focus)="firstNameFlag = false"
+                  (focusout)="firstNameFlag = true" class="form-control" maxlength="12" [class.invalid]="
+            signup_form.controls['firstName'].errors &&
+            signup_form.controls['firstName'].touched
+          " formControlName="firstName" />
+              <div class="error-message" *ngIf="
+            signup_form.controls['firstName'].errors &&
+            signup_form.controls['firstName'].touched &&
+            firstNameFlag
+          ">
+                  Enter First Name.
+              </div>
+          </div>
+          <div class="width-85"></div>
+          <div class="nested-class">
+              <input type="text" placeholder="Last Name" class="form-control" maxlength="12"
+                  formControlName="lastName" (focus)="lastNameFlag = false" (focusout)="lastNameFlag = true"
+                  [class.invalid]="
+            signup_form.controls['lastName'].errors &&
+            signup_form.controls['lastName'].touched
+          " />
+              <div class="error-message" *ngIf="
+            signup_form.controls['lastName'].errors &&
+            signup_form.controls['lastName'].touched &&
+            lastNameFlag
+          ">
+                  Enter Last Name.
+              </div>
+          </div>
+      </div>
+      <div class="form-wrapper">
+          <input type="text" placeholder="Username" class="form-control" formControlName="loginID"
+              (focus)="loginIDFlag = false" (focusout)="loginIDFlag = true" maxlength="12" [class.invalid]="
+          signup_form.controls['loginID'].errors &&
+          signup_form.controls['loginID'].touched &&
+          loginIDFlag
+        " />
+          <i class="zmdi zmdi-account"></i>
+      </div>
+      <div class="error-message" *ngIf="signup_form.controls['loginID'].errors && loginIDFlag">
+          <div *ngIf="signup_form.controls['loginID'].touched">
+              Enter user name.
+          </div>
+      </div>
+
+      <div class="form-wrapper">
+          <input type="email" placeholder="Email Address" class="form-control" formControlName="email"
+              (focus)="emailFlag = false" (focusout)="emailFlag = true" [class.invalid]="
+          signup_form.controls['email'].errors &&
+          signup_form.controls['email'].touched
+        " />
+          <i class="zmdi zmdi-email"></i>
+      </div>
+      <div class="error-message" *ngIf="
+        signup_form.controls['email'].errors &&
+        signup_form.controls['email'].touched
+      ">
+          <div class="error-message" *ngIf="
+          signup_form.controls['email'].errors &&
+          signup_form.controls['email'].touched &&
+          emailFlag
+        ">
+              <div *ngIf="signup_form.controls['email'].errors.required">
+                  Enter EmailId.
+              </div>
+              <div *ngIf="signup_form.controls['email'].errors.pattern">
+                  Enter valid EmailId.
+              </div>
+          </div>
+      </div>
+      <div class="form-wrapper">
+          <select class="form-control" [class.select-placeholder-text]="
+          signup_form.controls['gender'].value === ''
+        " formControlName="gender" (focus)="genderFlag = false" (focusout)="genderFlag = true" [class.invalid]="
+          signup_form.controls['gender'].errors &&
+          signup_form.controls['gender'].touched
+        ">
+              <option value="" disabled selected>Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+          </select>
+          <i class="zmdi zmdi-caret-down" style="font-size: 30px"></i>
+      </div>
+
+      <div class="error-message" *ngIf="signup_form.controls['gender'].errors && genderFlag">
+          <div *ngIf="signup_form.controls['gender'].touched">Select Gender.</div>
+      </div>
+      <div class="form-wrapper">
+          <input type="password" placeholder="Password" class="form-control" formControlName="password"
+              (focus)="passwordFlag = false" (focusout)="passwordFlag = true" [class.invalid]="
+          signup_form.controls['password'].errors &&
+          signup_form.controls['password'].touched
+        " />
+          <i class="zmdi zmdi-lock"></i>
+      </div>
+      <div class="error-message" *ngIf="
+        signup_form.controls['password'].errors &&
+        signup_form.controls['password'].touched &&
+        passwordFlag
+      ">
+          <div *ngIf="signup_form.controls['password'].errors.required">
+              Enter Password.
+          </div>
+          <div *ngIf="signup_form.controls['password'].errors.pattern">
+              Enter strong Password
+          </div>
+      </div>
+      <div class="form-wrapper">
+          <input type="password" placeholder="Confirm Password" class="form-control" formControlName="confirmPassword"
+              (focus)="confirmPasswordFlag = false" (focusout)="confirmPasswordFlag = true" [class.invalid]="
+          signup_form.controls['confirmPassword'].errors &&
+          signup_form.controls['confirmPassword'].touched
+        " />
+          <i class="zmdi zmdi-lock"></i>
+      </div>
+      <div class="text-danger" *ngIf="
+        signup_form.controls['confirmPassword'].touched &&
+        signup_form.controls['confirmPassword'].hasError('nomatch') &&
+        confirmPasswordFlag
+      ">
+          Password and Confirm Password do not match
+      </div>
+
+      <div class="form-wrapper">
+          <input type="tel" placeholder="Contact Number" class="form-control" (focus)="contactNumberFlag = false"
+              (focusout)="contactNumberFlag = true" formControlName="contactNumber" [class.invalid]="
+          signup_form.controls['contactNumber'].errors &&
+          signup_form.controls['contactNumber'].touched
+        " />
+          <i class="zmdi zmdi-phone"></i>
+      </div>
+      <div class="error-message" *ngIf="signup_form.controls['contactNumber'].errors && contactNumberFlag">
+          <div *ngIf="signup_form.controls['contactNumber'].errors.required">
+              Enter contactNumber.
+          </div>
+          <div *ngIf="signup_form.controls['contactNumber'].errors.pattern">
+              Enter valid Contact Number
+          </div>
+      </div>
+      <button (click)="register()" [disabled]="!signup_form.valid">
+          Register
+          <i class="zmdi zmdi-arrow-right"></i>
+      </button>
+  </form>
+</div>

@@ -1,0 +1,228 @@
+<div class="border"></div>
+<div
+  class="contain margin-top-15 tweet-box"
+  *ngFor="let tweet of tweetsArray; let i = index"
+  [ngClass]="i === tweetsArray.length - 1 ? 'no-border' : ''"
+>
+  <div class="avtar">
+    <img
+      *ngIf="tweet.tweetUserObject && tweet.tweetUserObject.gender === 'Female'"
+      src="./../../../../assets/images/female-icon.webp"
+    />
+    <img
+      *ngIf="tweet.tweetUserObject && tweet.tweetUserObject.gender === 'Male'"
+      src="./../../../../assets/images/male-avatar.jpg"
+    />
+  </div>
+  <div class="inline-display" *ngIf="tweet.tweetUserObject">
+    <span>{{ tweet.tweetUserObject.firstName | titlecase }} </span>
+    <span>{{ tweet.tweetUserObject.lastName | titlecase }}</span>
+    <span class="username">
+      @<small>{{ tweet.tweetUserObject.loginID }}</small> .
+    </span>
+    <span class="postTime">
+      <small>{{ dateDiff(tweet.timeOfPost) }}</small>
+    </span>
+    <span class="action-css" *ngIf="userName === tweet.tweetUserObject.loginID">
+      <i
+        class="fa fa-edit"
+        data-toggle="modal"
+        data-target="#editTweetModal"
+        (click)="onEdit(i,tweet)"
+      ></i>
+    </span>
+    <span class="action-css" *ngIf="userName === tweet.tweetUserObject.loginID">
+      <i class="zmdi zmdi-delete" (click)="delete(i)"></i>
+    </span>
+  </div>
+  <div class="margin-left-65">
+    {{ tweet.tweet }}
+  </div>
+  <div class="icons">
+    <div class="like">
+      <i
+        id="like{{ i }}"
+        [ngClass]="
+          tweet.likes && tweet.likes.likedBy.includes(userName)
+            ? 'fa fa-heart'
+            : 'fa fa-heart-o'
+        "
+        (click)="likeTweet(i, tweet.id)"
+      ></i>
+      <p class="count" *ngIf="tweet.likes && tweet.likes.count > 0">
+        {{ tweet.likes.count }}
+      </p>
+    </div>
+    <div
+      class="reply"
+      data-toggle="modal"
+      data-target="#exampleModalCenter"
+      (click)="sendData(tweet); on()"
+    >
+      <i class="fa fa-comment-o"></i>
+      <p class="count" *ngIf="tweet.replies != null">
+        {{ tweet.replies.length }}
+      </p>
+    </div>
+  </div>
+</div>
+<div
+  class="contain margin-top-15 tweet-box no-border"
+  *ngIf="tweetsArray && tweetsArray.length === 0"
+>
+  <div class="centre">
+    <div>You haven’t Tweeted any thing yet</div>
+  </div>
+</div>
+
+<!-- Modal reply tweet-->
+<div
+  class="modal fade tempo"
+  id="exampleModalCenter"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span class="blue" aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-tweet margin-top-15 tweet-box no-border">
+        <div class="avtar">
+          <img
+            *ngIf="tweetUserObject.gender === 'Female'"
+            src="./../../../../assets/images/female-icon.webp"
+          />
+          <img
+            *ngIf="tweetUserObject.gender === 'Male'"
+            src="./../../../../assets/images/male-avatar.jpg"
+          />
+        </div>
+        <div class="inline-display">
+          <span>{{ tweetUserObject.firstName | titlecase }} </span>
+          <span>{{ tweetUserObject.lastName | titlecase }}</span>
+          <span class="username">
+            @<small>{{ tweetUserObject.loginID }}</small> .
+          </span>
+          <span class="postTime">
+            <small>{{ dateDiff(tweetObject.timeOfPost) }}</small>
+          </span>
+        </div>
+        <div class="margin-left-65">
+          {{ tweetObject.tweet }}
+        </div>
+        <div class="margin-left-65">
+          <span class="reply"> Replying to</span>
+          <span class="username blue">
+            @<small>{{ tweetUserObject.loginID }}</small>
+          </span>
+        </div>
+      </div>
+      <div class="contain">
+        <div class="avtar">
+          <img
+            *ngIf="user.gender === 'Female'"
+            src="./../../../../assets/images/female-icon.webp"
+          />
+          <img
+            *ngIf="user.gender === 'Male'"
+            src="./../../../../assets/images/male-avatar.jpg"
+          />
+        </div>
+        <textarea
+          placeholder="Tweet your reply"
+          maxlength="144"
+          [(ngModel)]="tweetReply"
+        ></textarea>
+        <button
+          id="login"
+          class="btn btn-block tweet-btn"
+          (click)="tweetReplyCall(tweetObject.id)"
+          [disabled]="tweetReply === '' || tweetReply === null"
+        >
+          Reply
+        </button>
+      </div>
+      <div [ngClass]="tweetObject.replies ? 'border pt-2' : ''"></div>
+      <div
+        class="modal-tweet margin-top-15 tweet-box"
+        *ngFor="let reply of tweetObject.replies; let i = index"
+        [ngClass]="i === tweetObject.replies.length - 1 ? 'no-border' : ''"
+      >
+        <div class="avtar">
+          <img
+            *ngIf="reply.gender === 'Female'"
+            src="./../../../../assets/images/female-icon.webp"
+          />
+          <img
+            *ngIf="reply.gender === 'Male'"
+            src="./../../../../assets/images/male-avatar.jpg"
+          />
+        </div>
+        <div class="inline-display">
+          <span>{{ reply.firstName | titlecase }} </span>
+          <span>{{ reply.lastName | titlecase }}</span>
+          <span class="username">
+            @<small>{{ reply.username }}</small>
+          </span>
+          <span class="postTime">
+            <small>{{ dateDiff(reply.timeOfPost) }}</small>
+          </span>
+        </div>
+        <div class="margin-left-65">
+          {{ reply.reply }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal edit tweet -->
+<div
+  class="modal fade tempo"
+  id="editTweetModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal-content-edit">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span class="blue" aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="contain margins">
+        <textarea
+          placeholder="Edit tweet"
+          [(ngModel)]="editTweet"
+          maxlength="144"
+          class="mar"
+        ></textarea>
+        <button
+          id="login"
+          class="btn btn-block tweet-btn margin-rt-25"
+          (click)="edit()"
+          data-dismiss="modal"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

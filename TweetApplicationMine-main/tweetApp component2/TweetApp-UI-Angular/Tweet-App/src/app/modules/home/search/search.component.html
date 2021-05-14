@@ -1,0 +1,49 @@
+<div class="search-bar">
+  <div class="input-group ml-4 width-90">
+    <span class="input-group-text imageSearch" id="basic-addon1"
+      ><i class="fa fa-search"></i
+    ></span>
+
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search by username"
+      aria-label="Username"
+      aria-describedby="basic-addon1"
+      [(ngModel)]="searchKey"
+      (input)="search()"
+    />
+  </div>
+
+  <div
+    class="contain margin-top-15 tweet-box"
+    *ngFor="let user of users; let i = index"
+  >
+    <div class="avtar">
+      <img
+        *ngIf="user.gender === 'Female'"
+        src="./../../../../assets/images/female-icon.webp"
+      />
+      <img
+        *ngIf="user.gender === 'Male'"
+        src="./../../../../assets/images/male-avatar.jpg"
+      />
+    </div>
+    <div class="inline-display">
+      <span>{{ user.firstName | titlecase }} </span>
+      <span>{{ user.lastName | titlecase }} </span>
+      <div class="username">
+        @<small>{{ user.loginID }} </small>
+      </div>
+      <div class="postTime" *ngIf="user.status && user.status === 'Active'">
+        <div class="greenDot"></div>
+        <small>Active</small>
+      </div>
+      <div class="postTime" *ngIf="user.status && user.status === 'InActive'">
+        <div class="redDot"></div>
+        <small>InActive since {{ dateDiff(user.loggedOutTime) }}</small>
+      </div>
+    </div>
+    <div class="margin-left-65">{{ user.intro | titlecase }}</div>
+  </div>
+</div>

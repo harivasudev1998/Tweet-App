@@ -1,0 +1,78 @@
+/* You can add global styles to this file, and also import other style files */
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic);
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #fff;
+  min-height: 100vh;
+  color: #000;
+  background-repeat: no-repeat;
+  overflow-x: hidden;
+}
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px black inset;
+  box-shadow: 0 0 0px 1000px black inset;
+  outline: none;
+}
+option.form-control,
+option.form-control:focus
+{
+    background: rgb(29, 161, 242);
+}
+
+.fa-2x {
+  font-size: 2rem;
+}
+.fa {
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 2rem;
+}
+.margin-left-180 {
+  width: 600px;
+  position: absolute;
+  left: 20%;
+  border: 1px solid #5e5757;
+  border-top: none;
+  border-bottom: none;
+}
+.margin-left-180 {
+  width: 600px;
+  position: absolute;
+  left: 20%;
+  border: 1px solid #5e5757;
+  border-top: none;
+  border-bottom: none;
+}
+
+@media (max-width: 35em) {
+  .margin-left-180 {
+    left: 0%;
+  }
+}
+
+@media (min-width: 35.1em) {
+  .margin-left-180 {
+    position: absolute;
+    left: 35%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .margin-left-180 {
+    position: absolute;
+    left: 23.5%;
+  }
+}
+
+@media (min-width: 1440) {
+  .margin-left-180 {
+    position: absolute;
+    left: 20%;
+  }
+}
